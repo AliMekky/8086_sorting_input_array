@@ -311,13 +311,6 @@ endp
 
 
 
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; these functions are copied from emu8086.inc ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 ; gets the multi-digit SIGNED number from the keyboard,
 ; and stores the result in CX register:
 SCAN_NUM        PROC    NEAR
