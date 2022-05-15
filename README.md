@@ -12,10 +12,10 @@ contains their grades.
 
 ***************************************************************
 Steps : 
- 1-User is required to enter each student's number and grade.
- 2-The input values will be saved in two arrays. 
- 3-The students will be arranged in descending order according to their grades using bubble sort.
- 4-the two arrays are sorted in place.
+ 1- User is required to enter each student's number and grade.
+ 2- The input values will be saved in two arrays. 
+ 3- The students will be arranged in descending order according to their grades using bubble sort.
+ 4- the two arrays are sorted in place.
  
  ************************************************************
 Output: 
