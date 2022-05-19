@@ -51,7 +51,7 @@ msg7      db    cr, lf, "num3 = ", dollar
 num1      dw    ?
 num2      dw    ?
 num3      dw    ?
-marks     dw    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+marks     dw    100,75,60,55,95,97,100,80,99,90,88,81,70,93,94,87,84,80,91,91,77,80,90,92,96
 student   dw    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
 msg8      db    cr, lf, "student number ", dollar
 msg9      db    cr, "with mark = ", dollar 
@@ -64,7 +64,10 @@ msg12     db    cr, lf, cr, lf, "ERROR !!", dollar
 msg13     db    lf, cr, "enter number of students<1..25>: "
           db    lf, cr, dollar                        
 temp      dw    ?
-number    db    ?    
+number    db    ? 
+msg14     db    lf, cr, "Do you want to enter the two arrays manually ? 0-No  1-Yes"
+          db    lf, cr, dollar 
+option    dw    ?        
 ends
 
 stack segment
@@ -90,16 +93,31 @@ code segment
     gotoxy 0, 3
 
 
+     
+
+;input arrays or sorting exisitng arrays
+
+oneorzero:
+    lea     dx,msg14
+    call    puts
+    call    scan_num
+    mov     option,cx
+    cmp     option,1h
+    je      sn
+    cmp     option,0h
+    mov     number,24
+    je      bubble
+    lea     dx,msg12
+    call    puts
+    jmp     oneorzero
       
     
 ;scan number of students
 sn:
     lea     dx, msg13
     call    puts       ; display the message.      
-    push    cx
     call    scan_num
     mov     number,cl
-    pop     cx
     cmp     number,0001H
     jl      nerror
     cmp     number,0019H
@@ -179,20 +197,15 @@ continue:
     
 ;bubble sort:
 
-
+bubble:
     mov     cl,number
     dec     cl
 
 outer: ;outer loop 
-    lea     di,student-2
-    lea     si,marks-2
+    lea     di,student
+    lea     si,marks
     mov     ch,number
-    dec     ch
-    inc     si 
-    inc     si
-
-    inc     di
-    inc     di         
+    dec     ch         
 
 inner:  ;inner loop
     mov     ax,[si]  
@@ -311,11 +324,6 @@ endp
 
 
 
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; these functions are copied from emu8086.inc ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ; gets the multi-digit SIGNED number from the keyboard,
