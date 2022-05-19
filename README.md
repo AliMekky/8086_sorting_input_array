@@ -21,3 +21,5 @@ contains their grades.
 #### Output: 
 The outputs are two tables. The first one contains the student number arranged according to 
 their grades and the second table shows these grades.
+*************************************************************
+Note : the user can choose whether he enters the two arrays manually or sort the existing data in memory
